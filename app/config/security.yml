@@ -1,0 +1,27 @@
+security:
+    encoders:
+        Ageuk\UtilBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_DELEGATE
+        ROLE_SUPER: ROLE_ADMIN
+
+    providers:
+        administrators:
+            entity: { class: AgeukUtilBundle:User, property: username }
+
+    firewalls:
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path: /users/login
+                check_path: /users/login_check
+            logout:
+                path: /users/logout
+                target: /
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }

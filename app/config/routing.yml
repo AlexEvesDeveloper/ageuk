@@ -1,0 +1,19 @@
+ageuk_home:
+    resource: "@AgeukHomeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+ageuk_admin:
+    resource: "@AgeukAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+ageuk_delegate:
+    resource: "@AgeukDelegateBundle/Controller/"
+    type:     annotation
+    prefix:   /delegates
+
+ageuk_user:
+    resource: "@AgeukUserBundle/Controller/"
+    type:     annotation
+    prefix:   /users
