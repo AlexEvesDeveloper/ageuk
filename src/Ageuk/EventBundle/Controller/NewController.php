@@ -1,6 +1,6 @@
 <?php
 
-namespace Ageuk\AdminBundle\Controller;
+namespace Ageuk\EventBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,22 +18,16 @@ class NewController extends Controller
      */
     public function indexAction(Request $request)
     {
-    	$user = new Entity\AdminUser();
-    	$form = $this->createForm(new Form\AdminUserType, $user);
-
+    	$event = new Entity\Event();
+    	$form = $this->createForm(new Form\EventType(), $event);
     	$form->handleRequest($request);
+
     	if($form->isValid()){
     		$em = $this->getDoctrine()->getManager();
-
-    		$user->setUsername($form->getData()->getEmail());
-    		$user->setPassword(password_hash($form->getData()->getPassword(), PASSWORD_BCRYPT, array('cost' => 12)));
-
-    		$em->persist($user);
+    		$em->persist($event);
     		$em->flush();
-
-    		return $this->redirect($this->generateUrl('ageuk_home_default_index'));
     	}
-        
+
         return array(
         	'form' => $form->createView()
         );

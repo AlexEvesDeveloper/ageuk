@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="col-md-6 col-md-offset-3">
+	<ul class="list-group">
+	{% for event in events %}
+		<li class="list-group-item">
+			<a href="{{path('ageuk_event_view_index', {'event':event.id})}}">{{event.course.title}}</a>
+			<span class="pull-right">{{event.date|date("F j, Y, g:i a")}}</span>
+		</li>
+	{% endfor %}
+	</ul>
+</div>
+{% endblock %}

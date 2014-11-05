@@ -22,3 +22,13 @@ ageuk_rest:
     resource: "@AgeukRestBundle/Resources/config/routing.yml"
     type:     rest
     prefix:   /api
+
+ageuk_course:
+    resource: "@AgeukCourseBundle/Controller/"
+    type:     annotation
+    prefix:   /courses
+
+ageuk_event:
+    resource: "@AgeukEventBundle/Controller/"
+    type:     annotation
+    prefix:   /events

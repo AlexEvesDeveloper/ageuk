@@ -17,7 +17,7 @@ class NewController extends Controller
      * @Route("/new")
      * @Template()
      */
-    public function newAction(Request $request)
+    public function indexAction(Request $request)
     {
     	$user = new Entity\DelegateUser();
     	$form = $this->createForm(new Form\DelegateUserType, $user);

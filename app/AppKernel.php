@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new Ageuk\DelegateBundle\AgeukDelegateBundle(),
             new Ageuk\AdminBundle\AgeukAdminBundle(),
             new Ageuk\RestBundle\AgeukRestBundle(),
+            new Ageuk\CourseBundle\AgeukCourseBundle(),
+            new Ageuk\EventBundle\AgeukEventBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
