@@ -17,3 +17,8 @@ ageuk_user:
     resource: "@AgeukUserBundle/Controller/"
     type:     annotation
     prefix:   /users
+
+ageuk_rest:
+    resource: "@AgeukRestBundle/Resources/config/routing.yml"
+    type:     rest
+    prefix:   /api

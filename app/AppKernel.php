@@ -17,11 +17,15 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new Ageuk\UtilBundle\AgeukUtilBundle(),
             new Ageuk\UserBundle\AgeukUserBundle(),
             new Ageuk\HomeBundle\AgeukHomeBundle(),
             new Ageuk\DelegateBundle\AgeukDelegateBundle(),
             new Ageuk\AdminBundle\AgeukAdminBundle(),
+            new Ageuk\RestBundle\AgeukRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
