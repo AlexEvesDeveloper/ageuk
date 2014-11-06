@@ -60,7 +60,11 @@
 
 
     {% endblock %}
-    {% block body %}{% endblock %}
+    {% block body %}
+      {% if app.user.type == 'DELEGATE' %}
+        {%  include 'AgeukDelegateBundle:Dashboard:index.html.twig' %}
+      {% endif %}
+    {% endblock %}
 
     {% block javascripts %}
         <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->

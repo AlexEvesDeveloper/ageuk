@@ -19,13 +19,17 @@ class NewController extends Controller
     public function indexAction(Request $request)
     {
     	$event = new Entity\Event();
-    	$form = $this->createForm(new Form\EventType(), $event);
+    	$form = $this->createForm(new Form\EventType(), $event, array(
+            'action' => $this->generateUrl('ageuk_event_new_index')
+        ));
     	$form->handleRequest($request);
 
     	if($form->isValid()){
     		$em = $this->getDoctrine()->getManager();
     		$em->persist($event);
     		$em->flush();
+
+            return $this->redirect($this->generateUrl('ageuk_event_view_index', array('event' => $event->getId())));
     	}
 
         return array(

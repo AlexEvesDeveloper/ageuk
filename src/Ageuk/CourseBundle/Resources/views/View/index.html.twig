@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="col-md-6 col-md-offset-3 margin-top-30">
+	<ul class="list-group">
+
+		<li class="list-group-item">
+			<a href="#">{{course.title}}</a>
+		</li>
+
+	</ul>
+
+	<h3>Specific events</h3>
+	<ul class="list-group">
+	{% for event in course.events %}
+		<li class="list-group-item">
+			{{event.date|date("F j, Y, g:i a")}}
+		</li>
+	{% endfor %}
+	</ul>
+	<button class="btn btn-success" data-toggle="modal" data-target="#new-event">Create a new Event for this Course</button>
+</div>
+
+<div id="new-event" class="modal fade" style="display:none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Create a new Event
+			</div>
+			<div class="modal-body" style="overflow:hidden;">
+				{{render(controller('AgeukEventBundle:New:index'))}}
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

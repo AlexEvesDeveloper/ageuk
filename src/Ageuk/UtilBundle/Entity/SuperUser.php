@@ -9,6 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SuperUser extends User
 {
+	/**
+	 * Get type
+	 *
+	 * @return string
+	 */
+	public function getType()
+	{
+		return parent::TYPE_SUPER;
+	}
+
     /**
      * @inheritDoc
      */

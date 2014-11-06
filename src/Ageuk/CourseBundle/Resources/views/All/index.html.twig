@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="col-md-6 col-md-offset-3">
+	<ul class="list-group">
+	{% for course in courses %}
+		<li class="list-group-item">
+			<a href="{{path('ageuk_course_view_index', {'course':course.id})}}">{{course.title}}</a>
+		</li>
+	{% endfor %}
+	</ul>
+	<button class="btn btn-success" data-toggle="modal" data-target="#new-course">Create a new Course</button>
+</div>
+
+<div id="new-course" class="modal fade" style="display:none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Create a new Course
+			</div>
+			<div class="modal-body" style="overflow:hidden;">
+				{{render(controller('AgeukCourseBundle:New:index'))}}
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
