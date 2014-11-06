@@ -9,6 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SuperUser extends User
 {
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	
 	/**
 	 * Get type
 	 *

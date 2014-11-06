@@ -20,7 +20,9 @@ class NewController extends Controller
     public function indexAction(Request $request)
     {
     	$user = new Entity\DelegateUser();
-    	$form = $this->createForm(new Form\DelegateUserType, $user);
+    	$form = $this->createForm(new Form\DelegateUserType, $user, array(
+            'action' => $this->generateUrl('ageuk_delegate_new_index')
+        ));
 
     	$form->handleRequest($request);
     	if($form->isValid()){

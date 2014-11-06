@@ -16,7 +16,9 @@ class DelegateUserType extends UserType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('create', 'submit')
+            ->add('firstName')
+            ->add('lastName')
+            //->add('create', 'submit')
         ;
     }
 

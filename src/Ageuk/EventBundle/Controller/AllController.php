@@ -17,8 +17,13 @@ class AllController extends Controller
      */
     public function indexAction()
     {
+        $upcomingEvents = $this->getDoctrine()->getRepository('AgeukUtilBundle:Event')->findAllUpcomingEvents();
+        $pastEvents = $this->getDoctrine()->getRepository('AgeukUtilBundle:Event')->findAllPastEvents();
+
         return array(
-        	'events' => $this->getDoctrine()->getRepository('AgeukUtilBundle:Event')->findAll()
+        	'events' => $this->getDoctrine()->getRepository('AgeukUtilBundle:Event')->findAll(),
+            'upcomingEvents' => $upcomingEvents,
+            'pastEvents' => $pastEvents 
         );
     }
 }

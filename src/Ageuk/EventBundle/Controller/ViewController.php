@@ -19,8 +19,12 @@ class ViewController extends Controller
      */
     public function indexAction(Entity\Event $event)
     {
+        $now = new \DateTime('now');
+
         return array(
-        	'event' => $event
+        	'event' => $event,
+            'registered' => $event->getDelegates()->contains($this->getUser()) ? true : false,
+            'complete' => $now > $event->getDate() ? true : false
         );
     }
 }

@@ -19,8 +19,13 @@ class ViewController extends Controller
      */
     public function indexAction(Entity\Course $course)
     {
+        $upcomingEvents = $this->getDoctrine()->getRepository('AgeukUtilBundle:Event')->findAllUpcomingEventsForACourse($course);
+        $pastEvents = $this->getDoctrine()->getRepository('AgeukUtilBundle:Event')->findAllPastEventsForACourse($course);
+
         return array(
-        	'course' => $course
+        	'course' => $course,
+            'upcomingEvents' => $upcomingEvents,
+            'pastEvents' => $pastEvents
         );
     }
 }

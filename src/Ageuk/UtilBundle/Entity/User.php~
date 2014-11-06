@@ -65,6 +65,12 @@ abstract class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    const TYPE_SUPER = 'SUPER';
+    const TYPE_ADMIN = 'ADMIN';
+    const TYPE_DELEGATE = 'DELEGATE';
+
+    abstract public function getType();
+
     public function __construct()
     {
         $this->isActive = true;

@@ -1,14 +1,46 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-<div class="col-md-6 col-md-offset-3">
-	<ul class="list-group">
-	{% for event in events %}
-		<li class="list-group-item">
-			<a href="{{path('ageuk_event_view_index', {'event':event.id})}}">{{event.course.title}}</a>
-			<span class="pull-right">{{event.date|date("F j, Y, g:i a")}}</span>
-		</li>
-	{% endfor %}
-	</ul>
+
+<div class="col-md-8 col-md-offset-2 margin-top-30">
+	<div class="block-flat">
+		<div class="header">
+			<h4>Upcoming Training Events</h4>
+		</div>
+		<div class="content">
+			<ul class="list-group">
+			{% for event in upcomingEvents %}
+			<li class="list-group-item">
+				<a href="{{path('ageuk_event_view_index', {'event':event.id})}}">
+					{{event.course.title}}
+				</a>
+				<span class="float-right">{{event.date|date("F j, Y, g:i a")}}</span>
+			</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
 </div>
+
+{% if is_granted('ROLE_ADMIN') %}
+<div class="col-md-8 col-md-offset-2 margin-top-30">
+	<div class="block-flat">
+		<div class="header">
+			<h4>Past Events</h4>
+		</div>
+		<div class="content">
+			<ul class="list-group">
+			{% for event in pastEvents %}
+			<li class="list-group-item">
+				<a href="{{path('ageuk_event_view_index', {'event':event.id})}}">
+					{{event.course.title}}
+				</a>
+				<span class="float-right">{{event.date|date("F j, Y, g:i a")}}</span>
+			</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+{% endif %}
 {% endblock %}

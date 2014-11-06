@@ -49,6 +49,16 @@ class DelegateUser extends User
     }
 
     /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return parent::TYPE_DELEGATE;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getRoles()

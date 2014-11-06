@@ -1,0 +1,23 @@
+<div class="jumbotron juru-jumbotron col-md-12 background-color-very-light-purple text-align-center">
+	<h3>Welcome to the Age UK Course booking system.</h3>
+	<button class="btn btn-primary btn-xl button-1 margin-top-30" data-toggle="modal" data-target="#new-delegate" type="button">
+		CREATE NEW DELEGATE ACCOUNT
+	</button>
+	<a class="btn btn-default btn-xl margin-top-30 button-2" href="{{path('ageuk_user_login_login')}}">Sign in</a>
+</div>
+
+<div id="new-delegate" class="modal fade" style="display:none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>New Delegate Account</h3>
+			</div>
+			<div class="modal-body overflow-hidden">
+				{{render(controller('AgeukDelegateBundle:New:index'))}}
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -48,6 +48,11 @@ class Event
      */
     private $delegates;
 
+    /**
+     * @ORM\Column(name="capacity", type="integer")
+     */
+    private $capacity;
+
     public function __construct()
     {
         $this->delegates = new ArrayCollection();

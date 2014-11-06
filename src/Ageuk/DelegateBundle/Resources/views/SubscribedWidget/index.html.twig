@@ -1,51 +1,33 @@
-<div class="col-md-4 col-md-offset-4">
-	<h4>Courses I'm subscribed to</h4>
-	<div class="tab-container">
-		<ul class="nav nav-tabs">
-			<li class="active">
-				<a data-toggle="tab" href="#most-recent">Most recent</a>
-			</li>
-			<li>
-				<a data-toggle="tab" href="#most-popular">Most popular</a></li>
-			</li>
-		</ul>
-		<div class="tab-content">
-			<div id="most-recent" class="tab-pane active cont">
-				<table class="no-border">
-					<thead class="no-border">
+<div class="col-md-8 col-md-offset-2">
+	<div class="block-flat">
+		<div class="header">
+			<h4>Course Subscriptions</h4>
+		</div>
+		<div class="content">
+		{% if app.user.subscribedCourses|length < 1 %}
+			<h4>You are not subscribed to any training courses</h4>
+		{% else %}
+			<table class="no-border">
+				<thead class="no-border">
+					<tr>
+						<th>Course Title</th>
+						<th class="text-right">Action</th>
+					</tr>
+				</thead>
+				<tbody class="no-border-y">
+					{% for course in courses %}
 						<tr>
-							<th>Course Title</th>
-							<th>Action</th>
+							<td>
+								<a href="{{path('ageuk_course_view_index', {'course':course.id})}}">
+									{{course.title}}
+								</a>
+							</td>
+							<td class="text-right"><a href="#">Unsubscribe</a></td>
 						</tr>
-					</thead>
-					<tbody class="no-border-y">
-						{% for course in courses %}
-							<tr>
-								<td>Something</td>
-								<td class="text-right">Something else</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			<div id="most-popular" class="tab-pane cont">
-				<table class="no-border">
-					<thead class="no-border">
-						<tr>
-							<th>Course Title</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody class="no-border-y">
-						{% for course in courses %}
-							<tr>
-								<td>Something</td>
-								<td class="text-right">Something else</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>			
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
 		</div>
 	</div>
 </div>

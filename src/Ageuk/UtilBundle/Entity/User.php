@@ -59,7 +59,7 @@ abstract class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="isAsctive", type="boolean")
+     * @ORM\Column(name="isActive", type="boolean")
      *
      * @Expose
      */

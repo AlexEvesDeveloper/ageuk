@@ -27,6 +27,8 @@ class LoadData implements FixtureInterface
 		$user->setUsername('delegate@test.com');
 		$user->setPassword(password_hash('password', PASSWORD_BCRYPT, array('cost' => 12)));
 		$user->setEmail('delegate@test.com');
+		$user->setFirstName('Delegate');
+		$user->setLastName('User');
 		$manager->persist($user);
 		
 		$manager->flush();

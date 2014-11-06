@@ -44,6 +44,7 @@ class DelegateUser extends User
 
     public function __construct()
     {
+        parent::__construct();
     	$this->events = new ArrayCollection();
     	$this->subscribedCourses = new ArrayCollection();
     }
@@ -148,10 +149,10 @@ class DelegateUser extends User
     /**
      * Add subscribedCourses
      *
-     * @param \Ageuk\UtilBundle\Entity\Event $subscribedCourses
+     * @param \Ageuk\UtilBundle\Entity\Course $subscribedCourses
      * @return DelegateUser
      */
-    public function addSubscribedCourse(\Ageuk\UtilBundle\Entity\Event $subscribedCourses)
+    public function addSubscribedCourse(\Ageuk\UtilBundle\Entity\Course $subscribedCourses)
     {
         $this->subscribedCourses[] = $subscribedCourses;
 
@@ -161,9 +162,9 @@ class DelegateUser extends User
     /**
      * Remove subscribedCourses
      *
-     * @param \Ageuk\UtilBundle\Entity\Event $subscribedCourses
+     * @param \Ageuk\UtilBundle\Entity\Course $subscribedCourses
      */
-    public function removeSubscribedCourse(\Ageuk\UtilBundle\Entity\Event $subscribedCourses)
+    public function removeSubscribedCourse(\Ageuk\UtilBundle\Entity\Course $subscribedCourses)
     {
         $this->subscribedCourses->removeElement($subscribedCourses);
     }

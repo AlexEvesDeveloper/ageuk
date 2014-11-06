@@ -20,6 +20,7 @@ class EventType extends AbstractType
                 'property' => 'title'
             ))
             ->add('date')
+            ->add('capacity')
             ->add('Save', 'submit')
         ;
     }

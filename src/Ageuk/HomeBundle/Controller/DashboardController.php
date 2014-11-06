@@ -1,6 +1,6 @@
 <?php
 
-namespace Ageuk\DelegateBundle\Controller;
+namespace Ageuk\HomeBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

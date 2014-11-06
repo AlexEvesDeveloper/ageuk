@@ -5,7 +5,7 @@
 	<ul class="list-group">
 
 		<li class="list-group-item">
-			<a href="#">{{event.course.title}}</a>
+			<a href="{{path('ageuk_course_view_index', {'course':event.course.id})}}">{{event.course.title}}</a>
 			<span class="pull-right">{{event.date|date("F j, Y, g:i a")}}</span>
 		</li>
 
@@ -15,11 +15,25 @@
 	<ul class="list-group">
 	{% for delegate in event.delegates %}
 		<li class="list-group-item">
-			{{delegate.email}}
+			{{delegate.firstName}} {{delegate.lastName}}
 		</li>
 	{% endfor %}
 	</ul>
-	<button class="btn btn-success" data-toggle="modal" data-target="#register">Register</button>
+
+	{% if complete == false %}
+		{% if registered == false %}
+			{% if app.user.type == 'DELEGATE' %}
+				<button class="btn btn-success" data-toggle="modal" data-target="#register">Register</button>
+			{% else %}
+				<button class="btn btn-success" data-toggle="modal" data-target="#register">Register a Delegate</button>
+			{% endif %}
+		{% else %}
+			<button class="btn btn-success" data-toggle="modal" data-target="#unregister">Unregister</button>
+		{% endif %}
+	{% endif %}
+	{% if event.delegates|length > 0 and is_granted('ROLE_ADMIN') %}
+		<a href="javascript:demoTwoPageDocument()" class="btn btn-orange pull-right">Download Attendee list</a>
+	{% endif %}
 </div>
 
 <div id="register" class="modal fade" style="display:none;">
@@ -38,4 +52,34 @@
 		</div>
 	</div>
 </div>
+
+<div id="unregister" class="modal fade" style="display:none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Confirm unregistration
+			</div>
+			<div class="modal-body">
+				Are you sure you want to remove yourself from this event
+			</div>
+			<div class="modal-footer">
+				<a href="{{path('ageuk_event_unregister_index', {'event':event.id, 'delegate':app.user.id})}}" class="btn btn-success">Unregister</a>
+				<button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	<script>
+		var courseTitle = "{{event.course.title}}";
+		var courseDate = "{{event.date|date('F j, Y, g:i a')}}";
+
+		var attendees = [];
+		{% for d in event.delegates %}
+			attendees[attendees.length] = "{{d.firstName}} " + "{{d.lastName}}";
+		{% endfor %}
+	</script>
 {% endblock %}

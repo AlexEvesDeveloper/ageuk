@@ -4,6 +4,8 @@ namespace Ageuk\UtilBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
+use Ageuk\UtilBundle\Entity;
+
 /**
  * EventRepository
  *
@@ -12,4 +14,61 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
+	public function findAllUpcomingEvents()
+	{
+		$query = "
+			SELECT event FROM AgeukUtilBundle:Event event
+			WHERE event.date >= :now
+			ORDER BY event.date ASC
+		";
+
+		$params['now'] = new \DateTime('now');
+		
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->getResult();
+	}
+
+	public function findAllPastEvents()
+	{
+		$query = "
+			SELECT event FROM AgeukUtilBundle:Event event
+			WHERE event.date < :now
+			ORDER BY event.date ASC
+		";
+
+		$params['now'] = new \DateTime('now');
+		
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->getResult();
+	}
+
+	public function findAllUpcomingEventsForACourse(Entity\Course $course)
+	{
+		$query = "
+			SELECT event FROM AgeukUtilBundle:Event event
+			JOIN event.course course
+			WHERE course.id = :courseId
+			AND event.date >= :now
+			ORDER BY event.date ASC
+		";
+
+		$params['courseId'] = $course->getId();
+		$params['now'] = new \DateTime('now');
+		
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->getResult();
+	}
+
+	public function findAllPastEventsForACourse(Entity\Course $course)
+	{
+		$query = "
+			SELECT event FROM AgeukUtilBundle:Event event
+			JOIN event.course course
+			WHERE course.id = :courseId
+			AND event.date < :now
+			ORDER BY event.date ASC
+		";
+
+		$params['courseId'] = $course->getId();
+		$params['now'] = new \DateTime('now');
+		
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->getResult();
+	}
 }
